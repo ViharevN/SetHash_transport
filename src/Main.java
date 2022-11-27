@@ -117,7 +117,7 @@ public class Main {
 
 
         for (Transport transport : autoList) {
-            printInfo(transport);
+            Transport.printInfo(transport);
         }
 
 
@@ -138,23 +138,6 @@ public class Main {
 
     }
 
-    public static void printInfo(Transport transport) {
-        System.out.println("Информация по автомобилю: " + transport.getBrand() + " " + transport.getModel());
-        System.out.println("Спонсоры: ");
-        for (Sponsor sponsor : transport.getSponsors()) {
-            System.out.println(sponsor.getNameCompany());
-        }
-        System.out.println("Водитель: ");
-        for (Driver<?> driver : transport.getDrivers()) {
-            System.out.println(driver.getFullName());
-        }
-        System.out.println("Механики: ");
-        for (Mehanic<?> mehanic : transport.getMehanics()) {
-            System.out.println(mehanic.getName());
-        }
-
-
-    }
 
 
 
@@ -163,23 +146,5 @@ public class Main {
 
 
 
-    private static void checkDiagnostic(Transport... transports) {
-        for (Transport transport : transports) {
-            serviceTransport(transport);
-        }
-    }
 
-    private static void serviceTransport(Transport transport) {
-        if (!transport.checkDiagnostic()) {
-            try {
-                throw new RuntimeException(
-                        "автомобиль "
-                                + transport.getBrand() + " "
-                                + transport.getModel() +
-                                " не прошел диагностику");
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
 }
